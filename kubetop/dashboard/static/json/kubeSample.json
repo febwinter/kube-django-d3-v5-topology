@@ -1,0 +1,21 @@
+{
+    "nodes": [
+      {"id": 1, "name": "Master", "group": 1},
+      {"id": 2, "name": "Node1", "group": 2},
+      {"id": 3, "name": "Node2", "group": 2},
+      {"id": 4, "name": "Pod1", "group": 3},
+      {"id": 5, "name": "Pod2", "group": 3},
+      {"id": 6, "name": "Pod3", "group": 3},
+      {"id": 7, "name": "Pod4", "group": 3},
+      {"id": 8, "name": "Pod5", "group": 3}
+    ],
+    "links": [
+      {"source": 1, "target": 2},
+      {"source": 1, "target": 3},
+      {"source": 2, "target": 4},
+      {"source": 2, "target": 5},
+      {"source": 2, "target": 6},
+      {"source": 3, "target": 7},
+      {"source": 3, "target": 8}
+    ]
+  }
