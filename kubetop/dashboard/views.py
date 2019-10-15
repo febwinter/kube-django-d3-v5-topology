@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.template import loader
 import json
 from dashboard.models import KubeFile
@@ -15,5 +15,5 @@ def index(request):
 #kubeData = KubeFile.jsonfile
 
 def sendData(request):
-    return KubeFile.jsonfile
+    return JsonResponse(KubeFile.jsonfile)
 
