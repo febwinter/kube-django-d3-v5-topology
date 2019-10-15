@@ -4,7 +4,7 @@ var color = d3.scaleOrdinal(d3.schemeCategory10);
 
 const kubeFile = "{{kubeData}}"
 
-d3.json("/static/json/realData.json").then(function(graph) {
+d3.json(kubeFile).then(function(graph) {
 
 var label = {
     'nodes': [],
