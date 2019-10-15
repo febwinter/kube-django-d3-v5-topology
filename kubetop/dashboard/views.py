@@ -12,9 +12,8 @@ def index(request):
 # def infoSend(request):
 #     return render(request, KubeFile.jsonfile)
 
-kubeData = KubeFile.jsonfile
+#kubeData = KubeFile.jsonfile
 
 def sendData(request):
-    kubeData = KubeFile.jsonfile
-    return render(request,'index.html', context=kubeData)
+    return KubeFile.jsonfile
 
