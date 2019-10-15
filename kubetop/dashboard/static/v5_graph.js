@@ -2,6 +2,8 @@ var width = 1800;
 var height = 800;
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 
+const kubeFile = "{{kubeData}}"
+
 d3.json("/static/json/realData.json").then(function(graph) {
 
 var label = {

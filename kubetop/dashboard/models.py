@@ -1,19 +1,51 @@
 from django.db import models
+import json
+from collections import OrderedDict
+from kubernetes import client, config
 
 # Create your models here.
 
-class Master(models.Model):
-    master_name = models.CharField(max_length=200)
-    
+class KubeFile(models.Model):
+    config.load_kube_config()
+    idNum = 0
+    masterId = 0
+    tempNode = {}
+    nodeList = []
+    linkList = []
+    v1 = client.CoreV1Api()
 
-class Worker(models.Model):
-    worker_name = models.CharField(max_length=200)
-    worker_ip = models.GenericIPAddressField()
+    pods = v1.list_pod_for_all_namespaces(watch=False)
+    nodes = v1.list_node(watch=False)
 
-class Pod(models.Model):
-    pod_name = models.CharField(max_length=200)
-    pod_namespace = models.CharField(max_length=200)
-    pod_ip = models.GenericIPAddressField()
+    # master Node group : 0
+    # worker Node group : 1
+    # pod group : 2
 
-class Container(models.Model):
-    cont_name = models.CharField(max_length=200)
+    for i in nodes.items:
+        if (i.metadata.labels["nodetype"] == "master"):
+            nodeList.append({"id":idNum,"name":i.metadata.name,"group":0})
+            tempNode[i.metadata.name] = idNum
+            masterId = idNum
+            idNum+=1
+        else:
+            nodeList.append({"id":idNum,"name":i.metadata.name,"group":1})
+            tempNode[i.metadata.name] = idNum
+            idNum+=1
+
+    for i in range(idNum):
+        if (i != masterId):
+            linkList.append({"source":masterId,"target":i})
+
+    for i in pods.items:
+        nodeList.append({"id":idNum,"name":i.metadata.name,"group":2})
+        linkList.append({"source":idNum,"target":tempNode[i.spec.node_name]})
+        idNum+=1
+
+    jsonData = dict()
+
+    jsonData["nodes"] = nodeList
+    jsonData["links"] = linkList
+
+    jsonfile = json.dumps(jsonData, ensure_ascii=False, indent="\t")
+
+    #print(jsonfile)
