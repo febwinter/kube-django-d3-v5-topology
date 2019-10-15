@@ -14,4 +14,7 @@ def index(request):
 
 kubeData = KubeFile.jsonfile
 
+def sendData(request):
+    kubeData = KubeFile.jsonfile
+    return render(request,'index.html', context=kubeData)
 
