@@ -15,5 +15,6 @@ def index(request):
 #kubeData = KubeFile.jsonfile
 
 def sendData(request):
-    return JsonResponse(KubeFile.jsonfile)
+    return KubeFile.jsonfile
+    #return JsonResponse(KubeFile.jsonfile)
 
