@@ -61,4 +61,4 @@ def sendData(request):
 
     jsonData = json.dumps(jsonData, ensure_ascii=False, indent="\t")
 
-    return HttpResponse(jsonData)
+    return JsonResponse(jsonData,safe=False)
