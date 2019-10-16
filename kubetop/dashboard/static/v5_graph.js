@@ -2,9 +2,9 @@ var width = 1800;
 var height = 800;
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-const kubeFile = JSON.parse("{% url "kubeGraphData" %}");
+//const kubeFile = JSON.parse("{% url "kubeGraphData" %}");
 
-d3.json(kubeFile).then(function(graph) {
+d3.json("{{jsonfile}}").then(function(graph) {
 
 var label = {
     'nodes': [],
