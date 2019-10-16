@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.template import loader
 import json
 #from dashboard.models import KubeFile
 from kubernetes import client, config
 from django.core import serializers
-from models import KubeData
+#from models import KubeData
 
 
 # Create your views here.
@@ -60,3 +60,5 @@ def sendData(request):
     jsonData["links"] = linkList
 
     jsonData = json.dumps(jsonData, ensure_ascii=False, indent="\t")
+
+    return HttpResponse(jsonData)
