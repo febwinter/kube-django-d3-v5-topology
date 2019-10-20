@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.template import loader
 import json
-from django.utils import simplejson
+#from django.utils import simplejson
 #from dashboard.models import KubeFile
 from kubernetes import client, config
 from django.core import serializers
