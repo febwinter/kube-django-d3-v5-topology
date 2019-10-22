@@ -61,5 +61,5 @@ def sendData(request):
     jsonData["links"] = linkList
 
     jsonData = json.dumps(jsonData, ensure_ascii=False, indent="\t")
-    return render("index.html", {"jsonData":jsonData})
+    return render(request, 'index.html', {'jsonData':jsonData})
     
