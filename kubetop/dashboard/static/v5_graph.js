@@ -2,7 +2,7 @@ var width = 1800;
 var height = 800;
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-const kubeFile = JSON.parse("{{jsonData}}");
+const kubeFile = JSON.parse("{{ jsonData|safe }}");
 
 d3.json(kubeFile).then(function (graph) {
 

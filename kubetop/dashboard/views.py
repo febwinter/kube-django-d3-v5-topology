@@ -61,5 +61,8 @@ def sendData(request):
     jsonData["links"] = linkList
 
     jsonData = json.dumps(jsonData, ensure_ascii=False, indent="\t")
-    return render(request, 'index.html', {'jsonData':jsonData})
+    context = {'data':jsonData}
+    t = loader.get_template('index.html')
+    
+    return HttpResponse(t.render(request, 'index.html', context=context, content_type='text/json'))
     
