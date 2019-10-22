@@ -12,14 +12,6 @@ from django.core import serializers
 # Create your views here.
 
 def index(request):
-    return render(request, 'dashboard/index.html')
-
-# def infoSend(request):
-#     return render(request, KubeFile.jsonfile)
-
-#kubeData = KubeFile.jsonfile
-
-def sendData(request):
     config.load_kube_config()
     idNum = 0
     masterId = 0
@@ -62,7 +54,8 @@ def sendData(request):
 
     jsonData = json.dumps(jsonData, ensure_ascii=False, indent="\t")
     context = {'data':jsonData}
-    t = loader.get_template('index.html')
+    # t = loader.get_template('index.html')
+
+    # return HttpResponse(t.render(request, 'index.html', context=context, content_type='text/json'))
     
-    return HttpResponse(t.render(request, 'index.html', context=context, content_type='text/json'))
-    
+    return render(request, 'dashboard/index.html',context=context)
