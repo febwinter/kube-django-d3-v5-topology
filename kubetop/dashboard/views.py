@@ -52,10 +52,10 @@ def index(request):
     jsonData["nodes"] = nodeList
     jsonData["links"] = linkList
 
-    jsonData = json.dumps(jsonData, ensure_ascii=False, indent="\t")
-    context = {"data":jsonData}
+    jsonSum = json.dumps(jsonData, ensure_ascii=False, indent="\t")
+    context = {"data":jsonSum}
     # t = loader.get_template('index.html')
 
     # return HttpResponse(t.render(request, 'index.html', context=context, content_type='text/json'))
     
-    return render(request, 'index.html',context=context)
+    return render(request, 'dashboard/index.html',context=context)
