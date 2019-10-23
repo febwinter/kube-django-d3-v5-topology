@@ -2,8 +2,6 @@ var width = 1800;
 var height = 800;
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-var kubeFile = {{Jdata|safe}};
-
 function KubeTopology (graph) {
 
     var label = {
