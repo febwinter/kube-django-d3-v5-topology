@@ -59,13 +59,13 @@
     <center>
         <svg id='viz'></svg>
     </center>
-    <script src="{% static "v5_graph.js" %}"></script>
-    <!-- <script>
+    <!-- <script src="{% static "v5_graph.js" %}"></script> -->
+    <script>
         var width = 1800;
         var height = 800;
         var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-        const kubeFile = JSON.parse("{{jsonData}}");
+        const kubeFile = JSON.parse("{{JData}}");
 
         d3.json(kubeFile).then(function (graph) {
 
@@ -258,7 +258,7 @@
             }
 
         });
-    </script> -->
+    </script>
 </body>
 
 </html>
