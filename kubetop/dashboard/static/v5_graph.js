@@ -2,9 +2,9 @@ var width = 1800;
 var height = 800;
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-const kubeFile = JSON.parse("{{Jdata}}");
+var kubeFile = {{Jdata|safe}};
 
-d3.json(kubeFile).then(function (graph) {
+function KubeTopology (graph) {
 
     var label = {
         'nodes': [],
@@ -194,4 +194,6 @@ d3.json(kubeFile).then(function (graph) {
         d.fy = null;
     }
 
-});
+}
+
+KubeTopology(kubeFile);
