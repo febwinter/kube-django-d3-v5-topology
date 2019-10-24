@@ -1,6 +1,13 @@
-var width = 1800;
-var height = 800;
+// var width = 1800;
+var height = 750;
 var color = d3.scaleOrdinal(d3.schemePaired);
+
+var svg = d3.select("#viz")
+    .append("svg")
+    .attr("height", 750)
+var x = d3.scaleLinear()
+    .domain([0,150])
+
 
 function KubeTopology (graph) {
 
@@ -21,6 +28,8 @@ function KubeTopology (graph) {
             target: i * 2 + 1
         });
     });
+
+    width = parseInt(d3.select("#viz").style("width"),10)
 
     var labelLayout = d3.forceSimulation(label.nodes)
         .force("charge", d3.forceManyBody().strength(-50))
@@ -46,10 +55,14 @@ function KubeTopology (graph) {
     function neigh(a, b) {
         return a == b || adjlist[a + "-" + b];
     }
+    
 
 
-    var svg = d3.select("#viz").attr("width", width).attr("height", height);
+    //svg = d3.select("#viz").attr("width", width).attr("height", height);
+    svg.attr("width", width).attr("height",height)
     var container = svg.append("g");
+
+    x.range([20, width - 20]); 
 
     svg.call(
         d3.zoom()
@@ -195,3 +208,5 @@ function KubeTopology (graph) {
 }
 
 KubeTopology(kubeFile);
+
+window.addEventListener('resize', KubeTopology);
