@@ -44,7 +44,10 @@ def index(request):
 
     for i in pods.items:
         nodeList.append({"id":idNum,"name":i.metadata.name,"group":2})
-        linkList.append({"source":idNum,"target":tempNode[i.spec.node_name]})
+        if tempNode[i.spec.node_name] == None:
+            linkList.append({"source":idNum,"target":None})
+        else:    
+            linkList.append({"source":idNum,"target":tempNode[i.spec.node_name]})
         idNum+=1
 
     jsonData = dict()

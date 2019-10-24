@@ -1,38 +1,20 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-<style>
-    .links line {
-        stroke: #999;
-        stroke-opacity: 0.6;
-    }
-
-    text {
-        font-family: sans-serif;
-        font-size: 10px;
-        font-weight: 700;
-    }
-</style>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <script src="./d3.js"></script> -->
     <title>Migration Topology</title>
     <script src='https://d3js.org/d3.v5.min.js'></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
-    <script src="https://d3js.org/d3-quadtree.v1.min.js"></script>
-    <script src="https://d3js.org/d3-timer.v1.min.js"></script>
-    <script src="https://d3js.org/d3-force.v2.min.js"></script>
     <link rel="shortcut icon" href="/static/favicon/favicon.ico">
     <script>
         var kubeFile = {{Jdata|safe}}
     </script>
+    <!-- <link rel="stylesheet" href="{% static "css/style.css" %}"> -->
 </head>
 
-<body bgcolor="#DDDCDC">
+<body id="main">
     <div class="title">
         <br>
         <font size="6" face="gothic">
@@ -51,14 +33,6 @@
     </div>
     <br>
     <hr>
-    <!-- <div class="waeve-link">
-        <center>
-            <font size="3" face="gothic">
-                <a href="localhost:32321">Weave-Scope</a>
-            </font>
-        </center>
-    </div>
-    <hr> -->
     <center>
         <svg id='viz'></svg>
     </center>

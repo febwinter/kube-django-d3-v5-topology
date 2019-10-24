@@ -8,3 +8,8 @@ text {
     font-size: 10px;
     font-weight: 700;
 }
+
+#viz {
+    display: block;
+    margin: 0 auto;
+}
