@@ -13,7 +13,7 @@ from .models import KubeData
 
 def index(request):
     config.load_kube_config()
-    idNum = 0
+    idNum = 1
     masterId = 0
     tempNode = {}
     nodeList = []
@@ -29,21 +29,21 @@ def index(request):
 
     for i in nodes.items:
         if (i.metadata.labels["nodetype"] == "master"):
-            nodeList.append({"id":idNum,"name":i.metadata.name,"group":0})
-            tempNode[i.metadata.name] = idNum
-            masterId = idNum
-            idNum+=1
+            nodeList.append({"id":0,"name":i.metadata.name,"group":0,"size":40})
+            tempNode[i.metadata.name] = 0
+            masterId = 0
         else:
-            nodeList.append({"id":idNum,"name":i.metadata.name,"group":1})
+            nodeList.append({"id":idNum,"name":i.metadata.name,"group":1,"size":30})
+            linkList.append({"source":0,"target":idNum})
             tempNode[i.metadata.name] = idNum
             idNum+=1
 
-    for i in range(idNum):
-        if (i != masterId):
-            linkList.append({"source":masterId,"target":i})
+    # for i in range(idNum):
+    #     if (i != masterId):
+    #         linkList.append({"source":masterId,"target":i})
 
     for i in pods.items:
-        nodeList.append({"id":idNum,"name":i.metadata.name,"group":2})
+        nodeList.append({"id":idNum,"name":i.metadata.name,"group":2,"size":10})
         if tempNode[i.spec.node_name] == None:
             linkList.append({"source":idNum,"target":None})
         else:    

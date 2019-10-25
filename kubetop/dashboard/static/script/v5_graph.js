@@ -1,5 +1,5 @@
 var width = 1800;
-var height = 800;
+var height = 750;
 var color = d3.scaleOrdinal(d3.schemePaired);
 
 function KubeTopology (graph) {
@@ -22,8 +22,6 @@ function KubeTopology (graph) {
         });
     });
 
-    //width = parseInt(d3.select("#viz").style("width"),10)
-
     var labelLayout = d3.forceSimulation(label.nodes)
         .force("charge", d3.forceManyBody().strength(-50))
         .force("link", d3.forceLink(label.links).distance(0).strength(2));
@@ -35,7 +33,15 @@ function KubeTopology (graph) {
         .force("y", d3.forceY(height / 2).strength(1))
         .force("link", d3.forceLink(graph.links).id(function (d) {
             return d.id;
-        }).distance(50).strength(1))
+        }).distance(function (i,d) {
+            if (i.source.id === 0) {
+                return 150;
+            }
+            else {
+                // console.log(i.source.id)
+                return 50;
+            }
+        }).strength(1))
         .on("tick", ticked);
 
     var adjlist = [];
@@ -52,10 +58,8 @@ function KubeTopology (graph) {
 
 
     var svg = d3.select("#viz").attr("width", width).attr("height", height);
-    //svg.attr("width", width).attr("height",height)
     var container = svg.append("g");
-
-    //x.range([20, width - 20]); 
+ 
 
     svg.call(
         d3.zoom()
@@ -78,7 +82,9 @@ function KubeTopology (graph) {
         .data(graph.nodes)
         .enter()
         .append("circle")
-        .attr("r", 10)
+        .attr("r", function (d) {
+            return d.size
+        })
         .attr("fill", function (d) {
             return color(d.group);
         })
@@ -104,6 +110,7 @@ function KubeTopology (graph) {
         .style("font-family", "Arial")
         .style("font-size", 12)
         .style("pointer-events", "none"); // to prevent mouseover/drag capture
+        //.style("")
 
     node.on("mouseover", focus).on("mouseout", unfocus);
 

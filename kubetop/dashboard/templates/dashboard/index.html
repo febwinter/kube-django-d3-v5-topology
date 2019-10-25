@@ -11,7 +11,7 @@
     <script>
         var kubeFile = {{Jdata|safe}}
     </script>
-    <!-- <link rel="stylesheet" href="{% static "css/style.css" %}"> -->
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
 </head>
 
 <body id="main">
@@ -33,7 +33,7 @@
     </div>
     <br>
     <hr>
-    <svg id='viz'></svg>
+    <svg id="viz" viewbox="0 0 1800 750" preserveAspectRatio="xMidYMid meet"></svg>
     <script src="{% static "script/v5_graph.js" %}"></script>
     
 </body>

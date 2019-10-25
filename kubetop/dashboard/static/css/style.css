@@ -9,6 +9,13 @@ text {
     font-weight: 700;
 }
 
-#viz {
+#main {
+    background-color: whitesmoke;
+}
 
+#viz {
+    /* resize: horizontal; */
+    overflow: hidden;
+    max-height: 100%;
+    max-width: 100%;
 }
