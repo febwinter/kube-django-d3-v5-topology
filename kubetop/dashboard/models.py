@@ -4,5 +4,5 @@ from collections import OrderedDict
 
 
 # Create your models here.
-#class KubeData(models.Model):
-    #kubeJson = {}
+class KubeData(models.Model):
+    kubeJson = dict()

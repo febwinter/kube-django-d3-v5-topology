@@ -6,7 +6,7 @@ import json
 #from dashboard.models import KubeFile
 from kubernetes import client, config
 from django.core import serializers
-#from models import KubeData
+from .models import KubeData
 
 
 # Create your views here.
@@ -54,6 +54,8 @@ def index(request):
 
     jsonData["nodes"] = nodeList
     jsonData["links"] = linkList
+
+    KubeData.kubeJson = jsonData
 
     # jsonSum = json.dumps(jsonData, ensure_ascii=False, indent="\t")
     contextJ = {"Jdata":jsonData}
