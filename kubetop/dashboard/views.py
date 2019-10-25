@@ -58,6 +58,6 @@ def index(request):
     KubeData.kubeJson = jsonData
 
     # jsonSum = json.dumps(jsonData, ensure_ascii=False, indent="\t")
-    contextJ = {"Jdata":jsonData}
+    contextJ = {"Jdata":KubeData.kubeJson}
 
     return render(request, 'dashboard/index.html',context=contextJ)
