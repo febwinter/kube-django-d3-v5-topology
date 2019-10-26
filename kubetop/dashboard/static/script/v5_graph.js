@@ -209,4 +209,7 @@ function KubeTopology (graph) {
 
 KubeTopology(kubeFile);
 
+// playAlert = setInterval(function() {
+//     alert('http://webisfree.com');
+//  }, 3000);
 //window.addEventListener('resize', KubeTopology(kubeFile));
