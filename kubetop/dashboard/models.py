@@ -9,7 +9,6 @@ class KubeData(models.Model):
     def makeJson(self):
         config.load_kube_config()
         idNum = 1
-        masterId = 0
         tempNode = {}
         nodeList = []
         linkList = []
