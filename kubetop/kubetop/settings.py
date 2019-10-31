@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'dashboard.apps.DashboardConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -123,5 +124,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIR = [os.path.join(BASE_DIR,'static')]
 
 # mysite/settings.py
+
 # Channels
-# ASGI_APPLICATION = 'kubetop.routing.application'
+ASGI_APPLICATION = 'kubetop.routing.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'ROUTING': 'exam.routing.channel_routing',
+    }
+}
