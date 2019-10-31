@@ -14,6 +14,12 @@ kubernetes python client api (Recommand manual Setting)
 
 ## Setting
 
+sudo apt install software-properties-common
+
+sudo add-apt-repository ppa:deadsnakes/ppa
+
+sudo apt install python3.7
+
 apt-get install python3-pip
 
 pip3 setuptools upgrade
