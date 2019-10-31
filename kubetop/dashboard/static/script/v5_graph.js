@@ -105,7 +105,7 @@ var labelNode = container.append("g").attr("class", "labelNodes")
     .text(function (d, i) {
         return i % 2 == 0 ? "" : d.node.name;
     })
-    .style("fill", "#555")
+    .style("fill", "#F6F6F6") // original = #555
     .style("font-family", "Arial")
     .style("font-size", 12)
     .style("pointer-events", "none"); // to prevent mouseover/drag capture

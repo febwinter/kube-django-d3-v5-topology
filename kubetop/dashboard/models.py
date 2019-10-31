@@ -25,7 +25,7 @@ class KubeData(models.Model):
             if (i.metadata.labels["nodetype"] == "master"):
                 nodeList.append({"id":0,"name":i.metadata.name,"group":0,"size":40})
                 tempNode[i.metadata.name] = 0
-                masterId = 0
+                # masterId = 0
             else:
                 nodeList.append({"id":idNum,"name":i.metadata.name,"group":1,"size":30})
                 linkList.append({"source":0,"target":idNum})
