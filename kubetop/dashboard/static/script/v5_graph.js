@@ -1,6 +1,7 @@
 var width = 1800;
 var height = 750;
 var color = d3.scaleOrdinal(d3.schemePaired);
+console.log(color[0])
 var graph = kubeFile
 console.log(kubeFile)
 

@@ -16,7 +16,7 @@ class KubeData(models.Model):
 
         pods = v1.list_pod_for_all_namespaces(watch=False)
         nodes = v1.list_node(watch=False)
-
+        #print(nodes)
         # master Node group : 0
         # worker Node group : 1
         # pod group : 2
@@ -27,7 +27,11 @@ class KubeData(models.Model):
                 tempNode[i.metadata.name] = 0
                 # masterId = 0
             else:
-                nodeList.append({"id":idNum,"name":i.metadata.name,"group":1,"size":30})
+                if i.spec.taints != None and i.spec.taints[0].key.find("unreachable") != -1:
+                    nodeList.append({"id":idNum,"name":i.metadata.name,"group":1,"size":30})
+                else:
+                    nodeList.append({"id":idNum,"name":i.metadata.name,"group":1,"size":30})
+
                 linkList.append({"source":0,"target":idNum})
                 tempNode[i.metadata.name] = idNum
                 idNum+=1
@@ -37,10 +41,12 @@ class KubeData(models.Model):
         #         linkList.append({"source":masterId,"target":i})
 
         for i in pods.items:
-            nodeList.append({"id":idNum,"name":i.metadata.name,"group":2,"size":10})
-            if tempNode[i.spec.node_name] == None:
-                linkList.append({"source":idNum,"target":None})
-            else:    
+            
+            if tempNode.get(i.spec.node_name) == None:
+                pass
+                #linkList.append({"source":idNum,"target":None})
+            else:
+                nodeList.append({"id":idNum,"name":i.metadata.name,"group":2,"size":10})    
                 linkList.append({"source":idNum,"target":tempNode[i.spec.node_name]})
             idNum+=1
 

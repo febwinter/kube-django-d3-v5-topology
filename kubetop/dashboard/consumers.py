@@ -1,18 +1,20 @@
-from channels.generic.websocket import WebsocketConsumer
+from channels.generic.websocket import AsyncWebsocketConsumer
+import channels.layers
 import json
+from . import mqttSub
 
-class DashboardConsumer(WebsocketConsumer):
+class MQTTConsumer(AsyncWebsocketConsumer):
     
-    def connect(self):
-        self.accept()
-    
-    def disconnect(self,close_code):
-        pass
+    async def treat_message(self,msg):
+        channel_layer = self.channel_layer
+        payload = json.loads(msg.payload, encoding="utf-8")
 
-    def receive(self, text_data):
-        text_data_json = json.loads(text_data)
-        message = text_data_json['message']
+        await channel_layer.send("mqtt", {
+            "type": "value.change",
+            "message": payload
+         })
+        print("check!")
 
-        self.send(text_data = json.dumps({
-            'mesage' : message
-        }))
+    async def receiveMessage(self):
+        client = mqttSub.client
+        await client.loop_forever()

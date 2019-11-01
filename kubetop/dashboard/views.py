@@ -7,7 +7,7 @@ import json
 from kubernetes import client, config
 from django.core import serializers
 from .models import KubeData
-
+from .consumers import MQTTConsumer
 
 # Create your views here.
 
@@ -17,3 +17,7 @@ def index(request):
     contextJ = {"Jdata":kube.kubeJson}
 
     return render(request, 'dashboard/index.html',context=contextJ)
+
+# def sendMQTT(request):
+#     mq = MQTTConsumer()
+#     print(mq.receiveMessage())
