@@ -8,6 +8,7 @@ from kubernetes import client, config
 from django.core import serializers
 from .models import KubeData
 from .consumers import MQTTConsumer
+from . import mqttSub
 
 # Create your views here.
 
@@ -18,6 +19,8 @@ def index(request):
 
     return render(request, 'dashboard/index.html',context=contextJ)
 
-# def sendMQTT(request):
-#     mq = MQTTConsumer()
-#     print(mq.receiveMessage())
+async def sendMQTT(request):
+    mq = mqttSub.client.on_message
+    
+
+

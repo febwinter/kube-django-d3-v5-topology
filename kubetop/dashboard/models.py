@@ -5,7 +5,7 @@ from kubernetes import client, config
 # Create your models here.
 class KubeData(models.Model):
     kubeJson = dict()
-
+    migrateData = dict()
     def makeJson(self):
         config.load_kube_config()
         idNum = 1
